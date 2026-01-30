@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block title %}
+  <title>Home page</title>
+{% endblock %}
+{%  block content %}
+  <h1>Task Manager</h1>
+        <p>Welcome to the Greatest Task Manager</p>
+        <h3>Current Projects:</h3>
+        <ul>
+          <li>Num projects: {{ num_projects }}</li>
+          <li>Num teams: {{ num_teams }}</li>
+          <li>Num active tasks: {{ num_tasks }}</li>
+        </ul>
+{% endblock %}
