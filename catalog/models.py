@@ -2,6 +2,7 @@ from django.conf import settings
 from django.contrib.auth.models import AbstractUser
 from django.core.exceptions import ValidationError
 from django.db import models
+from django.urls import reverse
 from django.utils.text import slugify
 
 
@@ -34,6 +35,9 @@ class Project(models.Model):
     def __str__(self) -> str:
         return self.name
 
+    def get_absolute_url(self):
+        return reverse("catalog:project-detail", args=[str(self.id)])
+
 
 class Team(models.Model):
     name = models.CharField(max_length=100)
@@ -51,6 +55,9 @@ class Team(models.Model):
     class Meta:
         unique_together = ("project", "name")
         ordering = ["project__name", "name"]
+
+    def get_absolute_url(self):
+        return reverse("catalog:team-detail", args=[str(self.id)])
 
 
 class TaskType(models.Model):
@@ -140,3 +147,6 @@ class Task(models.Model):
                 raise ValidationError(
                     {"assignee": "Assignee must be a member of a team in this project."}
                 )
+
+    def get_absolute_url(self):
+        return reverse("catalog:task-detail", args=[str(self.id)])
