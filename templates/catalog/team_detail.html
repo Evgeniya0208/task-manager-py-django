@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h1>Team: {{ team.name }}</h1>
+  <p><strong>Team members: </strong></p>
+  <ul>
+  {% for member in team.members.all %}
+    <li><a href="#">{{ member.username }}</a></li>
+  {% empty %}
+    <li>No members yet. Please add people to the team.</li>
+  {% endfor %}
+  </ul>
+    <p><strong>Team tasks: </strong></p>
+  <ul>
+  {% for team in project.tasks.all %}
+    <li>{{ task.name }}</li>
+  {% empty %}
+    <li>No tasks yet</li>
+  {% endfor %}
+  </ul>
+{% endblock %}

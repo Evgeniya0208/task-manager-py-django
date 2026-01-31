@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>Team list <a style="float: right" href="{% url 'catalog:team-create' %}">+</a></h1>
+  {% if team_list %}
+    <ul>
+    {% for team in team_list %}
+      <li><a href="{{ team.get_absolute_url }}">{{ team.name }}</a></li>
+    {% endfor %}
+    </ul>
+  {% else %}
+    <p>There are no Teams. PLease create new.</p>
+  {% endif %}
+{% endblock %}
